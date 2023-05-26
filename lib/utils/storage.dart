@@ -33,7 +33,7 @@ class Storage {
     // 监测value的类型 如果是Map和List,则转换成JSON，以字符串进行存储
     if (value is Map || value is List) {
       type = 'String';
-      value = JsonEncoder().convert(value);
+      value = json.encode(value);
     }
     // 否则 获取value的类型的字符串形式
     else {
@@ -63,7 +63,7 @@ class Storage {
     dynamic value = _storage.get(key);
     // 判断value是不是一个json的字符串 是 则解码
     if (_isJson(value)) {
-      return JsonDecoder().convert(value);
+      return json.decode(value);
     } else {
       // 不是 则直接返回
       return value;
